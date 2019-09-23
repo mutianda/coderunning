@@ -4,7 +4,41 @@
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: #eee;
+    position: relative;
+    text-align: center;
+    .logo{
+      position: absolute;
+      top:-5px;
+      left:5px;
+      width: 60px;
+      height: 50px;
+    }
+    .search-box{
+      width: 55%;
+      height: 30px;
+      margin: 0 auto;
+      border-radius: 10px;
+      position: relative;
+      &.focused{
+        width: 60%;
+      }
+      .search-input{
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 10px;
+        padding: 0 30px 0 15px;
+        background-color: #efefef;
+
+
+      }
+      .search-icon{
+        position: absolute;
+        top:23px;
+        right: 2px;
+        width: 20px;
+      }
+    }
     .search-input{
       width: 50%;
       margin: 0 auto;
