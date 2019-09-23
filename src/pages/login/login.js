@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox ,message } from 'antd';
 import { Link ,  withRouter} from 'react-router-dom'
 import './login.less'
 import Logo from '../../components/header/header'
@@ -20,6 +20,7 @@ class NormalLoginForm extends React.Component {
 
                 }else {
                     console.log('账号密码错误 ', values);
+                    message.error('账号密码错误');
 
                 }
             }
@@ -30,7 +31,9 @@ class NormalLoginForm extends React.Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
-                <Logo height={this.state.height} width={this.state.width}></Logo>
+                <Form.Item>
+                    <Logo height={this.state.height} width={this.state.width}></Logo>
+                </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('username', {
                         rules: [{ required: true, message: 'Please input your username!' }],
