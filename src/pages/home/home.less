@@ -1,5 +1,6 @@
 .home-page{
   width: 100%;
+  height: 100%;
   .top-box{
     width: 100%;
     height: 60px;
@@ -16,7 +17,7 @@
     .search-box{
       width: 55%;
       height: 30px;
-      margin: 0 auto;
+      margin: 0px auto;
       border-radius: 10px;
       position: relative;
       &.focused{
@@ -25,24 +26,62 @@
       .search-input{
         width: 100%;
         height: 30px;
-        line-height: 30px;
+        line-height: 39px;
         border-radius: 10px;
         padding: 0 30px 0 15px;
-        background-color: #efefef;
+        background-color: #eee;
+        outline-style: none ;
+        border: .7px solid #eee;
 
 
       }
       .search-icon{
         position: absolute;
-        top:23px;
-        right: 2px;
+        top:18px;
+        right: 6px;
+        font-size: 20px;
         width: 20px;
       }
     }
-    .search-input{
-      width: 50%;
-      margin: 0 auto;
-      height: 30px;
+
+  }
+  .body-box{
+    height: calc(100% - 60px);
+    .tabs-list{
+      height: 43px;
+      overflow: hidden;
+    }
+    .demo-infinite-container {
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      overflow: auto;
+      padding: 8px 24px;
+      height: calc(100% - 83px);
+      .demo-loading-container {
+        position: absolute;
+        bottom: 40px;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
+
 }
+.desc-text{
+  display: -webkit-box;
+  overflow: hidden;
+  min-width: 100px;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical
+}
+.handle-icon{
+  font-size: 15px;
+}
+.ant-tabs-nav .ant-tabs-tab{
+  padding: 5px;
+  margin:5px
+}
+
