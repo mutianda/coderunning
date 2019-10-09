@@ -1,25 +1,24 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
-import Login from "../pages/login/login"
-import Register from "../pages/register/register"
-import Home from '../pages/home/home'
-import Navigation from '../components/navigation/navigation'
-import MyInfo from '../pages/myInfo'
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import Routers from "./routerMap";
  class RouterMap extends React.Component {
       constructor(props) {
            super(props)
         }
    render() {
+          let token = false
        return (
            <Router>
                <Switch>
                    <React.Fragment>
-                       <Route exact path="/" component={Home}/>
-                       <Route path="/login" component={Login}/>
-                       <Route path="/register" component={Register}/>
-                       <Route path="/home" component={Home}/>
-                       <Route path="/user" component={MyInfo}/>
-                       <Navigation></Navigation>
+                       {Routers.map((item, index) => {
+                           return <Route key={index} path={item.path} exact render={props =>
+                               (!item.auth ? (<item.component {...props} />) : (token ? <item.component {...props} /> : <Redirect to={{
+                                       pathname: '/login',
+                                       state: { from: props.location }
+                                   }} />)
+                               )} />
+                       })}
                    </React.Fragment>
                </Switch>
            </Router>

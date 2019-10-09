@@ -2,6 +2,7 @@ import React from 'react'
 import {Input ,Tooltip, List, Avatar,  Icon,Tabs, Radio, message, Spin  } from 'antd'
 import Header from '../../components/header/header'
 import './home.less'
+import NavTab from '../../components/navigation/navigation'
 import MyIcon from '../../components/icon'
 import axios from 'axios'
 
@@ -163,7 +164,9 @@ class Home extends React.Component{
                         </InfiniteScroll>
                     </div>
                 </div>
+                <NavTab/>
             </div>
+
         );
     }
     handleInputFocused(){

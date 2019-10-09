@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+     Route,
+     Switch,
+     Redirect
+} from 'react-router-dom';
+import Notfind from './pages/like/like'
+import Routers from './router/routerMap'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  render() {
+    let token = false
+    return (
+          <Router>
+             <div>
+            <Switch>
+              <React.Fragment>
+               {Routers.map((item, index) => {
+                return <Route key={index} path={item.path} exact render={props =>
+                        (!item.auth ? (<item.component {...props} />) : (token ? <item.component {...props} /> : <Redirect to={{
+                             pathname: '/login',
+                             state: { from: props.location }
+                            }} />)
+                     )} />
+                   })}
+             <Route component={Notfind} />
+              </React.Fragment>
+             </Switch>
+            </div>
+          </Router>
+    )
+  }
 }
 
 export default App;
