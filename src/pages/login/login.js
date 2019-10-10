@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, Checkbox ,message } from 'antd';
 import { Link ,  withRouter} from 'react-router-dom'
 import './login.less'
 import Logo from '../../components/header/header'
+import store from '../../store/createStore'
+import { connect } from 'react-redux'
 class NormalLoginForm extends React.Component {
     constructor() {
         //定义参数
@@ -15,7 +17,9 @@ class NormalLoginForm extends React.Component {
             if (err) {
                 console.log('Received values of form: ', values);
             }else {
-                if(values.username ==='admin'&& values.password==='123'){
+                if(values.username ==='admin'&& values.password==='12345'){
+
+                   this.props.saveUserInfo(values)
                     this.props.history.push('/home')
 
                 }else {
@@ -44,6 +48,7 @@ class NormalLoginForm extends React.Component {
                         />,
 
                     )}
+                    <div>{this.props.user.password}</div>
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('password', {
@@ -84,5 +89,22 @@ class NormalLoginForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state)=>{
+    return {
+        user:state.user
+    }
+}
+const mapDispatchToProps =(dispatch)=>{
+    return {
+        saveUserInfo(user){
+            const action ={
+                type:'save_user',
+                value:user
+            }
+            dispatch(action)
+            console.log(user)
+        }
+    }
+}
 const Login = Form.create({ name: 'normal_login' })(NormalLoginForm);
-export default Login
+export default connect(mapStateToProps,mapDispatchToProps)(Login)

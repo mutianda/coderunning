@@ -7,13 +7,14 @@ import MyIcon from '../../components/icon'
 import axios from 'axios'
 
 import InfiniteScroll from 'react-infinite-scroller';
-
+import store from '../../store/createStore'
 const fakeDataUrl = 'http://test.mutianda.com/index.php';
 class Home extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
             focused: false,
+            user: store.getState().user,
             mode: 'top',
             tabLsit: [
                 {tabName: '前端', id: 1},
