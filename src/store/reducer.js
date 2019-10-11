@@ -1,7 +1,8 @@
 const stateDefualt = {
     user:{
         username:'admin',
-        password:'123'
+        password:'123',
+        headImg:'../../static/images/imgs/CodeRunning.png'
     }
 }     //存放数据
 

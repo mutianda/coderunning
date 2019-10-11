@@ -8,13 +8,16 @@ import axios from 'axios'
 
 import InfiniteScroll from 'react-infinite-scroller';
 import store from '../../store/createStore'
+import { connect } from 'react-redux'
 const fakeDataUrl = 'http://test.mutianda.com/index.php';
 class Home extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
             focused: false,
-            user: store.getState().user,
+            user: {
+                username:''
+            },
             mode: 'top',
             tabLsit: [
                 {tabName: '前端', id: 1},
@@ -100,6 +103,11 @@ class Home extends React.Component{
                         <input placeholder="搜索" className="search-input" onFocus={this.handleInputFocused} onBlur={this.handleInputOnBlur}/>
                         <Icon type="search"  className="search-icon"/>
                     </div>
+                    <div className="head-img-box" onClick="goToSelfCenter">
+                        {/*<img src={this.props.user.headImg} className="head-img"/>*/}
+                        <img src="http://t.dyxz.la/upload/img/201204/1335063437.jpg" className="head-img"/>
+                    </div>
+
                     {/*<Search*/}
                     {/*    placeholder="input search text"*/}
                     {/*    onSearch={value => console.log(value)}*/}
@@ -182,5 +190,19 @@ class Home extends React.Component{
         })
     }
 }
+const mapStateToProps = (state)=>{
+    return {
+        user:state.user
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        handleImg(){
+            const action = {
 
-export default Home
+            }
+            dispatch(action)
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
